@@ -115,6 +115,7 @@
             localLicenseToolStripMenuItem.Name = "localLicenseToolStripMenuItem";
             localLicenseToolStripMenuItem.Size = new Size(314, 42);
             localLicenseToolStripMenuItem.Text = "Local License";
+            localLicenseToolStripMenuItem.Click += localLicenseToolStripMenuItem_Click;
             // 
             // tsmiInternationalLicense
             // 
@@ -159,6 +160,7 @@
             tsmiLocalDrivingLicenseApplications.Name = "tsmiLocalDrivingLicenseApplications";
             tsmiLocalDrivingLicenseApplications.Size = new Size(502, 42);
             tsmiLocalDrivingLicenseApplications.Text = "Local Driving License Applications";
+            tsmiLocalDrivingLicenseApplications.Click += tsmiLocalDrivingLicenseApplications_Click;
             // 
             // tsmiInternationalDrivingLicenseApplications
             // 
@@ -275,7 +277,7 @@
             manageUsersToolStripMenuItem.Image = Properties.Resources.ManageUsers32;
             manageUsersToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
-            manageUsersToolStripMenuItem.Size = new Size(278, 42);
+            manageUsersToolStripMenuItem.Size = new Size(269, 42);
             manageUsersToolStripMenuItem.Text = "Manage Users";
             manageUsersToolStripMenuItem.Click += manageUsersToolStripMenuItem_Click;
             // 
@@ -285,7 +287,7 @@
             addUserToolStripMenuItem.Image = Properties.Resources.AddPerson_321;
             addUserToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            addUserToolStripMenuItem.Size = new Size(278, 42);
+            addUserToolStripMenuItem.Size = new Size(269, 42);
             addUserToolStripMenuItem.Text = "Add User";
             addUserToolStripMenuItem.Click += addUserToolStripMenuItem_Click;
             // 

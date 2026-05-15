@@ -50,7 +50,7 @@ namespace PresentationLayer
 
                 tbLoginInfo.Enabled = false;
 
-                ucPersonInfoWithFilter1.FilterValueFocus();
+                ucPersonInfoWithFilter1.FilterFocus();
             }
             else
             {
@@ -129,7 +129,7 @@ namespace PresentationLayer
                 {
 
                     MessageBox.Show("Selected Person already has a user, choose another one.", "Select another Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ucPersonInfoWithFilter1.FilterValueFocus();
+                    ucPersonInfoWithFilter1.FilterFocus();
                 }
 
                 else
@@ -143,7 +143,7 @@ namespace PresentationLayer
             else
             {
                 MessageBox.Show("Please Select a Person", "Select a Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ucPersonInfoWithFilter1.FilterValueFocus();
+                ucPersonInfoWithFilter1.FilterFocus();
             }
 
         }

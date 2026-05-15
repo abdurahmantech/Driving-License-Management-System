@@ -69,7 +69,7 @@
             // 
             tbSearch.Location = new Point(326, 306);
             tbSearch.Margin = new Padding(2);
-            tbSearch.Name = "tbFilterValue";
+            tbSearch.Name = "tbFilter";
             tbSearch.Size = new Size(212, 31);
             tbSearch.TabIndex = 21;
             tbSearch.TextChanged += tbSearch_TextChanged;

@@ -600,7 +600,7 @@
             groupBox1.Controls.Add(tbFirstName);
             groupBox1.Font = new Font("Times New Roman", 12F);
             groupBox1.Location = new Point(10, 101);
-            groupBox1.Name = "groupBox1";
+            groupBox1.Name = "gbTestType";
             groupBox1.Size = new Size(1129, 441);
             groupBox1.TabIndex = 202;
             groupBox1.TabStop = false;

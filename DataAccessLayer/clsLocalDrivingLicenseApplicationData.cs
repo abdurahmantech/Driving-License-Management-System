@@ -13,8 +13,8 @@ namespace DataAccessLayer
     {
 
         public static bool GetLocalDrivingLicenseApplicationInfoByID(
-            int LocalDrivingLicenseApplicationID, ref int ApplicationID,
-            ref int LicenseClassID)
+            int localDrivingLicenseApplicationID, ref int applicationID,
+            ref int licenseClassID)
         {
             bool isFound = false;
             try
@@ -22,11 +22,11 @@ namespace DataAccessLayer
                 using SqlConnection connection = new(clsDataAccessSetting.ConnectionString);
 
 
-                string query = "SELECT * FROM LocalDrivingLicenseApplications WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
+                string query = "SELECT * FROM LocalDrivingLicenseApplications WHERE localDrivingLicenseApplicationID = @localDrivingLicenseApplicationID";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
 
 
                 connection.Open();
@@ -38,8 +38,8 @@ namespace DataAccessLayer
                     // The record was found
                     isFound = true;
 
-                    ApplicationID = (int)reader["ApplicationID"];
-                    LicenseClassID = (int)reader["LicenseClassID"];
+                    applicationID = (int)reader["applicationID"];
+                    licenseClassID = (int)reader["licenseClassID"];
                 }
 
             }
@@ -53,8 +53,8 @@ namespace DataAccessLayer
         }
 
         public static bool GetLocalDrivingLicenseApplicationInfoByApplicationID(
-         int ApplicationID, ref int LocalDrivingLicenseApplicationID,
-         ref int LicenseClassID)
+         int applicationID, ref int localDrivingLicenseApplicationID,
+         ref int licenseClassID)
         {
             bool isFound = false;
 
@@ -62,11 +62,11 @@ namespace DataAccessLayer
             {
                 using SqlConnection connection = new(clsDataAccessSetting.ConnectionString);
 
-                string query = "SELECT * FROM LocalDrivingLicenseApplications WHERE ApplicationID = @ApplicationID";
+                string query = "SELECT * FROM LocalDrivingLicenseApplications WHERE applicationID = @applicationID";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                command.Parameters.AddWithValue("@applicationID", applicationID);
 
 
                 connection.Open();
@@ -78,8 +78,8 @@ namespace DataAccessLayer
                     // The record was found
                     isFound = true;
 
-                    LocalDrivingLicenseApplicationID = (int)reader["LocalDrivingLicenseApplicationID"];
-                    LicenseClassID = (int)reader["LicenseClassID"];
+                    localDrivingLicenseApplicationID = (int)reader["localDrivingLicenseApplicationID"];
+                    licenseClassID = (int)reader["licenseClassID"];
 
                 }
 
@@ -132,7 +132,7 @@ namespace DataAccessLayer
         }
 
         public static int AddNewLocalDrivingLicenseApplication(
-            int ApplicationID, int LicenseClassID )
+            int applicationID, int licenseClassID )
         {
 
             //this function will return the new person id if succeeded and -1 if not.
@@ -143,14 +143,14 @@ namespace DataAccessLayer
                 using SqlConnection connection = new(clsDataAccessSetting.ConnectionString);
 
                 string query = @"INSERT INTO LocalDrivingLicenseApplications ( 
-                            ApplicationID,LicenseClassID)
-                             VALUES (@ApplicationID,@LicenseClassID);
+                            applicationID,licenseClassID)
+                             VALUES (@applicationID,@licenseClassID);
                              SELECT SCOPE_IDENTITY();";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("ApplicationID", ApplicationID);
-                command.Parameters.AddWithValue("LicenseClassID", LicenseClassID);
+                command.Parameters.AddWithValue("applicationID", applicationID);
+                command.Parameters.AddWithValue("licenseClassID", licenseClassID);
 
 
                 connection.Open();
@@ -173,7 +173,7 @@ namespace DataAccessLayer
         }
 
         public static bool UpdateLocalDrivingLicenseApplication(
-            int LocalDrivingLicenseApplicationID, int ApplicationID, int LicenseClassID)
+            int localDrivingLicenseApplicationID, int applicationID, int licenseClassID)
         {
 
             int rowsAffected = 0;
@@ -182,15 +182,15 @@ namespace DataAccessLayer
                 using SqlConnection connection = new(clsDataAccessSetting.ConnectionString);
 
                 string query = @"Update  LocalDrivingLicenseApplications  
-                            set ApplicationID = @ApplicationID,
-                                LicenseClassID = @LicenseClassID
-                            where LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
+                            set applicationID = @applicationID,
+                                licenseClassID = @licenseClassID
+                            where localDrivingLicenseApplicationID=@localDrivingLicenseApplicationID";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-                command.Parameters.AddWithValue("ApplicationID", ApplicationID);
-                command.Parameters.AddWithValue("LicenseClassID", LicenseClassID);
+                command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("applicationID", applicationID);
+                command.Parameters.AddWithValue("licenseClassID", licenseClassID);
 
 
                 connection.Open();
@@ -206,7 +206,7 @@ namespace DataAccessLayer
             return (rowsAffected > 0);
         }
 
-        public static bool DeleteLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID)
+        public static bool DeleteLocalDrivingLicenseApplication(int localDrivingLicenseApplicationID)
         {
 
             int rowsAffected = 0;
@@ -216,11 +216,11 @@ namespace DataAccessLayer
                 using SqlConnection connection = new(clsDataAccessSetting.ConnectionString);
 
                 string query = @"Delete LocalDrivingLicenseApplications 
-                                where LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
+                                where localDrivingLicenseApplicationID = @localDrivingLicenseApplicationID";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
 
 
                 connection.Open();
@@ -236,7 +236,7 @@ namespace DataAccessLayer
             return (rowsAffected > 0);
         }
 
-        public static bool DoesPassTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        public static bool DoesPassTestType(int localDrivingLicenseApplicationID, int testTypeID)
         {
             bool Result = false;
 
@@ -246,17 +246,17 @@ namespace DataAccessLayer
 
                 string query = @" SELECT top 1 TestResult
                             FROM LocalDrivingLicenseApplications INNER JOIN
-                                 TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID INNER JOIN
+                                 TestAppointments ON LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = TestAppointments.localDrivingLicenseApplicationID INNER JOIN
                                  Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
                             WHERE
-                            (LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID) 
-                            AND(TestAppointments.TestTypeID = @TestTypeID) AND (Tests.TestResult = 1)
+                            (LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = @localDrivingLicenseApplicationID) 
+                            AND(TestAppointments.testTypeID = @testTypeID) AND (Tests.TestResult = 1)
                             ORDER BY TestAppointments.TestAppointmentID desc";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-                command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+                command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
 
                 connection.Open();
@@ -279,7 +279,7 @@ namespace DataAccessLayer
 
         }
 
-        public static bool DoesAttendTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        public static bool DoesAttendTestType(int localDrivingLicenseApplicationID, int testTypeID)
 
         {
 
@@ -290,17 +290,17 @@ namespace DataAccessLayer
 
                 string query = @" SELECT top 1 Found=1
                             FROM LocalDrivingLicenseApplications INNER JOIN
-                                 TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID INNER JOIN
+                                 TestAppointments ON LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = TestAppointments.localDrivingLicenseApplicationID INNER JOIN
                                  Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
                             WHERE
-                            (LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID) 
-                            AND(TestAppointments.TestTypeID = @TestTypeID)
+                            (LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = @localDrivingLicenseApplicationID) 
+                            AND(TestAppointments.testTypeID = @testTypeID)
                             ORDER BY TestAppointments.TestAppointmentID desc";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-                command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+                command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
 
                 connection.Open();
@@ -323,7 +323,7 @@ namespace DataAccessLayer
 
         }
 
-        public static byte TotalTrialsPerTest(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        public static byte TotalTrialsPerTest(int localDrivingLicenseApplicationID, int testTypeID)
         {
             byte TotalTrialsPerTest = 0;
             try
@@ -333,16 +333,16 @@ namespace DataAccessLayer
                 string query = @"
                                     SELECT TotalTrialsPerTest = count(TestID)
                             FROM LocalDrivingLicenseApplications INNER JOIN
-                                 TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID INNER JOIN
+                                 TestAppointments ON LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = TestAppointments.localDrivingLicenseApplicationID INNER JOIN
                                  Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
                             WHERE
-                            (LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID) 
-                            AND(TestAppointments.TestTypeID = @TestTypeID) ";
+                            (LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = @localDrivingLicenseApplicationID) 
+                            AND(TestAppointments.testTypeID = @testTypeID) ";
 
                 using SqlCommand command = new(query, connection);
 
-                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-                command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+                command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
 
                 connection.Open();
@@ -364,7 +364,7 @@ namespace DataAccessLayer
             return TotalTrialsPerTest;
         }
 
-        public static bool IsThereAnActiveScheduledTest(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        public static bool IsThereAnActiveScheduledTest(int localDrivingLicenseApplicationID, int testTypeID)
 
         {
 
@@ -375,16 +375,16 @@ namespace DataAccessLayer
 
                 string query = @" SELECT top 1 Found=1
                             FROM LocalDrivingLicenseApplications INNER JOIN
-                                 TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID 
+                                 TestAppointments ON LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = TestAppointments.localDrivingLicenseApplicationID 
                             WHERE
-                            (LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID)  
-                            AND(TestAppointments.TestTypeID = @TestTypeID) and isLocked=0
+                            (LocalDrivingLicenseApplications.localDrivingLicenseApplicationID = @localDrivingLicenseApplicationID)  
+                            AND(TestAppointments.testTypeID = @testTypeID) and isLocked=0
                             ORDER BY TestAppointments.TestAppointmentID desc";
 
                 using SqlCommand command = new SqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-                command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+                command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
 
                 connection.Open();

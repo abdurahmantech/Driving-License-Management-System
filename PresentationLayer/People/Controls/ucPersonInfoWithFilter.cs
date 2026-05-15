@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using BusinessLogicLayer;
 
@@ -12,7 +9,32 @@ namespace PresentationLayer.People.Controls
     public partial class ucPersonInfoWithFilter : UserControl
     {
 
-        [DefaultValue(true)]
+        /*        // Define a custom event handler delegate with parameters
+                public event Action<int> OnPersonSelected;
+                // Create a protected method to raise the event with a parameter
+                protected virtual void PersonSelected(int PersonID)
+                {
+                    Action<int> handler = OnPersonSelected;
+                    if (handler != null)
+                    {
+                        handler(PersonID); // Raise the event with the parameter
+                    }
+                }*/
+
+        // Define a custom event handler delegate with parameters
+        public event Action<int> OnPersonSelected;
+        // Create a protected method to raise the event with a parameter
+        protected virtual void PersonSelected(int PersonID)
+        {
+            Action<int> handler = OnPersonSelected;
+            if (handler != null)
+            {
+                handler(PersonID); // Raise the event with the parameter
+            }
+        }
+
+        private bool _FilterEnabled = true;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool FilterEnabled
         {
             get
@@ -21,22 +43,10 @@ namespace PresentationLayer.People.Controls
             }
             set
             {
-                gbFilter.Enabled = value;
+                _FilterEnabled = value;
+                gbFilter.Enabled = _FilterEnabled;
             }
         }
-
-        /*        // Define a custom event handler delegate with parameters
-public event Action<int> OnPersonSelected;
-// Create a protected method to raise the event with a parameter
-protected virtual void PersonSelected(int PersonID)
-{
-Action<int> handler = OnPersonSelected;
-if (handler != null)
-{
-handler(PersonID); // Raise the event with the parameter
-}
-}*/
-
         public ucPersonInfoWithFilter()
         {
             InitializeComponent();
@@ -46,7 +56,7 @@ handler(PersonID); // Raise the event with the parameter
         {
 
             cbFilterBy.SelectedIndex = 0;
-            tbFilterValue.Text = PersonID.ToString();
+            tbFilter.Text = PersonID.ToString();
 
             FindNow();
 
@@ -57,27 +67,31 @@ handler(PersonID); // Raise the event with the parameter
             switch (cbFilterBy.Text)
             {
                 case "Person ID":
-                    ucPersonDetails1.LoadPersonInfo(int.Parse(tbFilterValue.Text));
+                    ucPersonDetails1.LoadPersonInfo(int.Parse(tbFilter.Text));
 
                     break;
 
                 case "National No.":
-                    ucPersonDetails1.LoadPersonInfo(tbFilterValue.Text);
+                    ucPersonDetails1.LoadPersonInfo(tbFilter.Text);
                     break;
 
                 default:
                     break;
             }
 
-            /*            if (OnPersonSelected != null && FilterEnabled)
-                            // Raise the event with a parameter
-                            OnPersonSelected(ctrlPersonCard1.PersonID);*/
+            if (OnPersonSelected != null && FilterEnabled)
+                // Raise the event with a parameter
+                OnPersonSelected(ucPersonDetails1.PersonID);
         }
+/*      if (OnPersonSelected != null && FilterEnabled)
+                            // Raise the event with a parameter
+                            OnPersonSelected(ucPersonDetails1.PersonID);
+        }*/
 
         private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbFilterValue.Text = "";
-            tbFilterValue.Focus();
+            tbFilter.Text = "";
+            tbFilter.Focus();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -104,13 +118,13 @@ handler(PersonID); // Raise the event with the parameter
             // Handle the data received
 
             cbFilterBy.SelectedIndex = 1;
-            tbFilterValue.Text = PersonID.ToString();
+            tbFilter.Text = PersonID.ToString();
             ucPersonDetails1.LoadPersonInfo(PersonID);
         }
 
-        public void FilterValueFocus()
+        public void FilterFocus()
         {
-            tbFilterValue.Focus();
+            tbFilter.Focus();
         }
 
         private void tbFilterValue_KeyPress(object sender, KeyPressEventArgs e)
@@ -139,14 +153,14 @@ handler(PersonID); // Raise the event with the parameter
 
         private void tbFilterValue_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(tbFilterValue.Text.Trim()))
+            if (string.IsNullOrEmpty(tbFilter.Text.Trim()))
             {
-                errorProvider1.SetError(tbFilterValue, "This field is required!");
+                errorProvider1.SetError(tbFilter, "This field is required!");
             }
             else
             {
                 //e.Cancel = false;
-                errorProvider1.SetError(tbFilterValue, null);
+                errorProvider1.SetError(tbFilter, null);
             }
         }
 

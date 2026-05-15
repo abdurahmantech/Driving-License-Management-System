@@ -34,12 +34,28 @@
             btnSearch = new Button();
             label1 = new Label();
             cbFilterBy = new ComboBox();
-            tbFilterValue = new TextBox();
+            tbFilter = new TextBox();
             gbFilter = new GroupBox();
             errorProvider1 = new ErrorProvider(components);
             gbFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
+            // 
+            // gbFilter
+            // 
+            gbFilter.Controls.Add(tbFilter);
+            gbFilter.Controls.Add(cbFilterBy);
+            gbFilter.Controls.Add(label1);
+            gbFilter.Controls.Add(btnSearch);
+            gbFilter.Controls.Add(btnAddNewPerson);
+            gbFilter.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbFilter.Location = new Point(3, 3);
+            gbFilter.Name = "gbFilter";
+            gbFilter.Size = new Size(760, 96);
+            gbFilter.TabIndex = 6;
+            gbFilter.TabStop = false;
+            gbFilter.Text = "Filter";
+            gbFilter.Enter += gbFilter_Enter;
             // 
             // ucPersonDetails1
             // 
@@ -94,29 +110,13 @@
             // 
             // tbFilterValue
             // 
-            tbFilterValue.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tbFilterValue.Location = new Point(361, 40);
-            tbFilterValue.Name = "tbFilterValue";
-            tbFilterValue.Size = new Size(247, 35);
-            tbFilterValue.TabIndex = 5;
-            tbFilterValue.KeyPress += tbFilterValue_KeyPress;
-            tbFilterValue.Validating += tbFilterValue_Validating;
-            // 
-            // gbFilter
-            // 
-            gbFilter.Controls.Add(tbFilterValue);
-            gbFilter.Controls.Add(cbFilterBy);
-            gbFilter.Controls.Add(label1);
-            gbFilter.Controls.Add(btnSearch);
-            gbFilter.Controls.Add(btnAddNewPerson);
-            gbFilter.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbFilter.Location = new Point(3, 3);
-            gbFilter.Name = "gbFilter";
-            gbFilter.Size = new Size(1225, 96);
-            gbFilter.TabIndex = 6;
-            gbFilter.TabStop = false;
-            gbFilter.Text = "Filter";
-            gbFilter.Enter += gbFilter_Enter;
+            tbFilter.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbFilter.Location = new Point(361, 40);
+            tbFilter.Name = "tbFilter";
+            tbFilter.Size = new Size(247, 35);
+            tbFilter.TabIndex = 5;
+            tbFilter.KeyPress += tbFilterValue_KeyPress;
+            tbFilter.Validating += tbFilterValue_Validating;
             // 
             // errorProvider1
             // 
@@ -125,6 +125,7 @@
             // ucPersonInfoWithFilter
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             Controls.Add(gbFilter);
@@ -140,13 +141,13 @@
 
         #endregion
 
+        private GroupBox gbFilter;
         private ucPersonDetails ucPersonDetails1;
         private Button btnAddNewPerson;
         private Button btnSearch;
         private Label label1;
         private ComboBox cbFilterBy;
-        private TextBox tbFilterValue;
-        private GroupBox gbFilter;
+        private TextBox tbFilter;
         private ErrorProvider errorProvider1;
     }
 }

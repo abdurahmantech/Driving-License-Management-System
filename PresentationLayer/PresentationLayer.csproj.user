@@ -4,6 +4,21 @@
     <Compile Update="Applications\Application Types\frmListApplicationTypes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Applications\Controls\ucApplicationBasicInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Applications\Local Driving License\Controls\ucLocalDrivingLicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Applications\Local Driving License\frmAddUpdateLocalDLApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Applications\Local Driving License\frmLocalDrivingLicenseApplicationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Applications\Local Driving License\frmLocalDrivingLIcenseApplicationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -28,8 +43,20 @@
     <Compile Update="People\frmShowPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Tests\frmListTestAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Tests\frmScheduleTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Tests\frmTakeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Tests\Test Types\frmUpdateTestType.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Tests\User Controls\ucScheduledTest.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Users\Controls\ucUserInfo.cs">
       <SubType>UserControl</SubType>

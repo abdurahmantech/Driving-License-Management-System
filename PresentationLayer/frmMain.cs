@@ -97,5 +97,17 @@ namespace PresentationLayer
             frmListApplicationTypes frm = new frmListApplicationTypes();
             frm.ShowDialog();
         }
+
+        private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateLocalDLApplication frm = new();
+            frm.ShowDialog();
+        }
+
+        private void tsmiLocalDrivingLicenseApplications_Click(object sender, EventArgs e)
+        {
+            frmLocalDrivingLicenseApplicationList frm = new();
+            frm.ShowDialog();
+        }
     }
 }

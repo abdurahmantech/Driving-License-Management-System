@@ -92,7 +92,7 @@
             tbFilterValue.Font = new Font("Times New Roman", 12F);
             tbFilterValue.Location = new Point(304, 230);
             tbFilterValue.Margin = new Padding(2);
-            tbFilterValue.Name = "tbFilterValue";
+            tbFilterValue.Name = "tbFilter";
             tbFilterValue.Size = new Size(237, 35);
             tbFilterValue.TabIndex = 29;
             tbFilterValue.TextChanged += tbSearch_TextChanged;

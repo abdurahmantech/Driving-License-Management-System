@@ -9,7 +9,7 @@ namespace DataAccessLayer
     public static class clsApplicationData
     {
         public static bool GetApplicationInfoByID(int applicationID, ref int applicantPersonID, ref DateTime applicationDate, ref int applicationTypeID,
-                ref short applicationStatus, ref DateTime lastStatusDate, ref decimal paidFees, ref int createdByUserID)
+                ref byte applicationStatus, ref DateTime lastStatusDate, ref decimal paidFees, ref int createdByUserID)
         {
             bool isFound = false;
 
@@ -32,7 +32,7 @@ namespace DataAccessLayer
                     applicantPersonID = (int)reader["ApplicantPersonID"];
                     applicationDate = (DateTime)reader["ApplicationDate"];
                     applicationTypeID = (int)reader["applicationTypeID"];
-                    applicationStatus = (short)reader["ApplicationStatus"];
+                    applicationStatus = (byte)reader["ApplicationStatus"];
                     lastStatusDate = (DateTime)reader["LastStatusDate"];
                     paidFees = (decimal)reader["PaidFees"];
                     createdByUserID = (int)reader["CreatedByUserID"];
@@ -77,7 +77,7 @@ namespace DataAccessLayer
         }
 
         public static int AddNewApplication(int applicantPersonID, DateTime applicationDate, int applicationTypeID,
-            short applicationStatus, DateTime lastStatusDate, decimal paidFees, int createdByUserID)
+            byte applicationStatus, DateTime lastStatusDate, decimal paidFees, int createdByUserID)
         {
 
             int insertedId = -1;
@@ -133,7 +133,7 @@ namespace DataAccessLayer
         }
 
         public static bool UpdateApplication(int applicationID, int applicantPersonID, DateTime applicationDate, int applicationTypeID,
-            short applicationStatus, DateTime lastStatusDate, decimal paidFees, int createdByUserID)
+            byte applicationStatus, DateTime lastStatusDate, decimal paidFees, int createdByUserID)
         {
             int rowsAffected = 0;
 

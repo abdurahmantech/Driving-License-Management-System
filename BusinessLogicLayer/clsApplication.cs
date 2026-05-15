@@ -17,7 +17,7 @@ namespace BusinessLogicLayer
 
         public enum enApplicationType
         {
-            NewDrivingLicense = 1,
+            NewLocalDrivingLicense = 1,
             RenewDrivingLicense = 2,
             ReplaceLostDrivingLicense = 3,
             ReplaceDamagedDrivingLicense = 4,
@@ -134,7 +134,7 @@ namespace BusinessLogicLayer
 
         public bool Cancel()
         {
-            return clsApplicationData.UpdateStatus(ApplicationID, (short)enApplicationStatus.Completed);
+            return clsApplicationData.UpdateStatus(ApplicationID, (short)enApplicationStatus.Cancelled);
         }
 
         public bool SetCompleted()
@@ -144,14 +144,14 @@ namespace BusinessLogicLayer
 
         private bool _AddNewApplication()
         {
-            ApplicationID = clsApplicationData.AddNewApplication(this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (short)Status, LastStatusDate, PaidFees, CreatedByUserID);
+            ApplicationID = clsApplicationData.AddNewApplication(this.ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (byte)Status, LastStatusDate, PaidFees, CreatedByUserID);
 
             return (ApplicationID != -1);
         }
 
         private bool _UpdateApplication()
         {
-            return clsApplicationData.UpdateApplication(this.ApplicationID,ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (short)Status, LastStatusDate, PaidFees, CreatedByUserID);
+            return clsApplicationData.UpdateApplication(this.ApplicationID,ApplicantPersonID, this.ApplicationDate, this.ApplicationTypeID, (byte)Status, LastStatusDate, PaidFees, CreatedByUserID);
         }
 
         public bool Save()
@@ -176,14 +176,14 @@ namespace BusinessLogicLayer
             return clsApplicationData.IsApplicationExist(applicationID);
         }
 
-        public static clsApplication GetApplication(int applicationID)
+        public static clsApplication FindBaseApplication(int applicationID)
         {
             int applicantPersonID = -1, applicationTypeID = -1, createdByUserID = -1;
             DateTime applicationDate = DateTime.Now, lastStatusDate = DateTime.Now;
 
             decimal paidFees = 0;
 
-            short status = (short)enApplicationStatus.New;
+            byte status = (byte)enApplicationStatus.New;
 
           bool isFound =  clsApplicationData.GetApplicationInfoByID(applicationID, ref applicantPersonID, ref applicationDate, ref applicationTypeID, ref status,
                 ref lastStatusDate, ref paidFees, ref createdByUserID);
